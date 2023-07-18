@@ -1,23 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
 
 function App() {
+  const [notDone, setNotDone] = useState([]);
+
+  function addTask() {
+    const taskInput = document.getElementById("task");
+    const newTask = taskInput.value;
+    setNotDone(prevNotDone => [...prevNotDone, newTask]);
+    taskInput.value = "";
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <body className="App-header">
+        <form onSubmit={(e) => e.preventDefault()}>
+          <label for="task">Task </label>
+          <input type="text" id="task"></input>
+          <button onClick={addTask}>Submit</button>
+        </form>
+        <ul>
+          {notDone.map(task => <li key={task}>{task}</li>)}
+        </ul>
+      </body>
     </div>
   );
 }
