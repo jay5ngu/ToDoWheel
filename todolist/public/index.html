@@ -12,22 +12,27 @@
   </head>
   <body>
     <div class="container">
+
       <div class="to-do-app">
         <h1>To Do List</h1>
         <br>
         <div class="input-field">
           <input type="text" id="new-task" placeholder="Add task">
-          <button id="submit">Submit</button>
+          <button id="submit" onclick="addTask()">Submit</button>
         </div>
       </div>
+    
       <div class="task-list">
-        <input type="checkbox" id="test" name="test" value="test">
-        <label for="test">Testing</label>
+        <ul id="tasks">
+            <input type="checkbox" id="test" name="test" value="test">
+            <label for="test">Testing</label>
+        </ul>
       </div>
+
       <div class="wheel-option">
-        <button id="wheel-button">Pick a task for me!</button>
+        <button id="wheel-button" onclick="spinWheel()">Pick a task for me!</button>
       </div>
-      
     </div>  
+    <script src="App.js"></script>
   </body>
 </html>
