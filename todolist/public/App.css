@@ -60,8 +60,9 @@
   display: none;
 }
 
-#test {
+#checkBox {
   margin-right: 10px;
+  margin-bottom: 15px;
 }
 
 .wheel-option {
