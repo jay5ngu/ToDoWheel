@@ -32,8 +32,15 @@ function addTask() {
 }
 
 function completeTask(index) {
+    console.log(index);
+    console.log(notDone[index]);
+    
     done.push(notDone[index]);
-    delete notDone[index];
+    notDone.splice(index, 1);
+    
+    console.log(notDone);
+    console.log(done);
+    
     refreshTaskList();
 }
 
@@ -51,12 +58,15 @@ function updateTaskList() {
 
         var taskCheck = document.createElement("input");
         taskCheck.setAttribute("type", "checkbox");
-        taskCheck.setAttribute("id", "checkBox");
+        taskCheck.setAttribute("class", "checkBox");
+        taskCheck.setAttribute("id", notDone[notDoneIndex]);
         taskCheck.setAttribute("value", notDoneIndex);
+        taskCheck.addEventListener("click", function() { completeTask(taskCheck.value); });
         notDoneIndex += 1;
 
         var taskLabel = document.createElement("label");
         taskLabel.setAttribute("for", newTask.value);
+        taskLabel.setAttribute("id", notDone[notDoneIndex] + "2");
         var taskText = document.createTextNode(newTask.value);
         taskLabel.appendChild(taskText);
 
@@ -67,17 +77,20 @@ function updateTaskList() {
         recordedTasks.appendChild(brk);
 }
 
-function refreshTaskList()
-{
+function refreshTaskList() {
+    recordedTasks.innerHTML = "";
     for (let i = 0; i < notDone.length; i++)
     {
         var taskCheck = document.createElement("input");
         taskCheck.setAttribute("type", "checkbox");
-        taskCheck.setAttribute("id", "checkBox");
-        taskCheck.setAttribute("value", i)
+        taskCheck.setAttribute("class", "checkBox");
+        taskCheck.setAttribute("id", notDone[i]);
+        taskCheck.setAttribute("value", i);
+        taskCheck.addEventListener("click", function() { completeTask(taskCheck.value); });
 
         var taskLabel = document.createElement("label");
         taskLabel.setAttribute("for", notDone[i]);
+        taskLabel.setAttribute("id", notDone[i] + "2");
         var taskText = document.createTextNode(notDone[i]);
         taskLabel.appendChild(taskText);
 
@@ -87,6 +100,30 @@ function refreshTaskList()
         var brk = document.createElement("br");
         recordedTasks.appendChild(brk);
     }
+
+    for (let i = 0; i < done.length; i++)
+    {
+        var taskCheck = document.createElement("input");
+        taskCheck.setAttribute("type", "checkbox");
+        taskCheck.checked = 1;
+        taskCheck.setAttribute("class", "checkBox");
+        taskCheck.setAttribute("id", done[i]);
+        taskCheck.setAttribute("value", i);
+        taskCheck.addEventListener("click", function() { completeTask(taskCheck.value); });
+
+        var taskLabel = document.createElement("label");
+        taskLabel.setAttribute("for", done[i]);
+        taskLabel.setAttribute("id", done[i] + "2");
+        var taskText = document.createTextNode(done[i]);
+        taskLabel.appendChild(taskText);
+
+        recordedTasks.appendChild(taskCheck);
+        recordedTasks.appendChild(taskLabel);
+
+        var brk = document.createElement("br");
+        recordedTasks.appendChild(brk);
+    }
+
     notDoneIndex = notDone.length - 1;
 }
 
