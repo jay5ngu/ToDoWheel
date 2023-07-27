@@ -65,6 +65,10 @@
   margin-bottom: 15px;
 }
 
+.completedTasks {
+  text-decoration: line-through;
+}
+
 .wheel-option {
   text-align: center;
 }
