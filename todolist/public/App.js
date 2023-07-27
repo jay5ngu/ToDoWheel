@@ -1,6 +1,8 @@
 const newTask = document.getElementById("new-task");
 const submitButton = document.getElementById("submit");
-const recordedTasks = document.getElementById("tasks");
+const notDoneTasks = document.getElementById("notDoneTasks");
+const doneTasks = document.getElementById("doneTasks")
+
 // const wheelOption = document.getElementsByClassName("wheel-option");
 const wheelButton = document.getElementById("wheel-button");
 
@@ -23,8 +25,8 @@ function addTask() {
         notDone.push(newTask.value);
         updateTaskList();
 
-        if (recordedTasks.style.display === "") {
-            recordedTasks.style.display = "block";
+        if (notDoneTasks.style.display === "") {
+            notDoneTasks.style.display = "block";
         }
     }
     newTask.value = null;
@@ -70,15 +72,16 @@ function updateTaskList() {
         var taskText = document.createTextNode(newTask.value);
         taskLabel.appendChild(taskText);
 
-        recordedTasks.appendChild(taskCheck);
-        recordedTasks.appendChild(taskLabel);
+        notDoneTasks.appendChild(taskCheck);
+        notDoneTasks.appendChild(taskLabel);
 
         var brk = document.createElement("br");
-        recordedTasks.appendChild(brk);
+        notDoneTasks.appendChild(brk);
 }
 
 function refreshTaskList() {
-    recordedTasks.innerHTML = "";
+    notDoneTasks.innerHTML = "";
+    doneTasks.innerHTML = "";
     for (let i = 0; i < notDone.length; i++)
     {
         var taskCheck = document.createElement("input");
@@ -94,11 +97,11 @@ function refreshTaskList() {
         var taskText = document.createTextNode(notDone[i]);
         taskLabel.appendChild(taskText);
 
-        recordedTasks.appendChild(taskCheck);
-        recordedTasks.appendChild(taskLabel);
+        notDoneTasks.appendChild(taskCheck);
+        notDoneTasks.appendChild(taskLabel);
 
         var brk = document.createElement("br");
-        recordedTasks.appendChild(brk);
+        notDoneTasks.appendChild(brk);
     }
 
     for (let i = 0; i < done.length; i++)
@@ -117,11 +120,11 @@ function refreshTaskList() {
         var taskText = document.createTextNode(done[i]);
         taskLabel.appendChild(taskText);
 
-        recordedTasks.appendChild(taskCheck);
-        recordedTasks.appendChild(taskLabel);
+        doneTasks.appendChild(taskCheck);
+        doneTasks.appendChild(taskLabel);
 
         var brk = document.createElement("br");
-        recordedTasks.appendChild(brk);
+        doneTasks.appendChild(brk);
     }
 
     notDoneIndex = notDone.length - 1;
