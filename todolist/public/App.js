@@ -12,17 +12,17 @@ var incompleteIndex = 0;
 var completeIndex = 0;
 
 function addTask() {
-    // var newTask = document.getElementById("new-task");
-    if (newTask.value === "") {
+    let potentialTask = newTask.value.trim();
+    if (potentialTask === "") {
         alert("Please add a task");
     }
-    else if (incomplete.indexOf(newTask.value) != -1)
+    else if (incomplete.indexOf(potentialTask) != -1)
     {
         alert("Task currently exists in list");
     }
     else
     {
-        incomplete.push(newTask.value);
+        incomplete.push(potentialTask);
         updateTaskList();
 
         if (incompleteTasks.style.display === "") {
@@ -34,21 +34,21 @@ function addTask() {
 }
 
 function completeTask(index) {
-    console.log(index);
-    console.log(incomplete[index]);
+    // console.log(index);
+    // console.log(incomplete[index]);
     
     complete.push(incomplete[index]);
     incomplete.splice(index, 1);
     
-    console.log(incomplete);
-    console.log(complete);
+    // console.log(incomplete);
+    // console.log(complete);
     
     refreshTaskList();
 }
 
 function redoTask(index) {
-    console.log(index);
-    console.log(complete[index]);
+    // console.log(index);
+    // console.log(complete[index]);
 
     incomplete.push(complete[index])
     complete.splice(index, 1);
@@ -141,5 +141,5 @@ function refreshTaskList() {
 }
 
 function spinWheel() {
-
+    console.log("clicked");
 }
